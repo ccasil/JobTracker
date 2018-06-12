@@ -1,0 +1,25 @@
+<h4>You have applied to the following positions!</h4>
+
+<button [routerLink]="['/new']">Add a job</button>
+
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Job Posting</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let job of jobs">
+    <td> {{ job.company }} </td>
+    <td> {{ job.title }} </td>
+    <td> {{ job.category }} </td>
+    <td> {{ job.linktopost }} </td>
+    <td> {{ job.status }} </td>
+    <td>
+      <button (click)="viewJob(job)"> Details </button>
+      <button (click)="editJob(job)"> Edit </button>
+    </td>
+  </tr>
+</table>

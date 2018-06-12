@@ -1,0 +1,25 @@
+<h4> Add a position you have just applied to: </h4>
+
+<form (submit)="submitButton()">
+  <p>Company name:
+    <input type="text" name="company" [(ngModel)]="company">
+  </p>
+  <p>Job title:
+    <input type="text" name="title" [(ngModel)]="title">
+  </p>
+  <p>Company Category:
+    <input type="text" name="category" [(ngModel)]="category">
+  </p>
+  <p>Link to job posting:
+    <input type="text" name="linktopost" [(ngModel)]="linktopost">
+  </p>
+  <p>Status:
+    <input type="text" name="status" [(ngModel)]="status">
+  </p>
+  <p>Notes:
+    <input type="text" name="notes" [(ngModel)]="notes">
+  </p>
+  <input type="submit" value="Add job">
+</form>
+<button [routerLink]="['/home']">Cancel</button>
+<br> {{error}}
