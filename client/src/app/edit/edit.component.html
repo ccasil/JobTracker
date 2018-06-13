@@ -1,0 +1,26 @@
+<h4> Edit a position you have just applied to: </h4>
+<div *ngIf="job">
+  <form (submit)="submitButton()">
+    <p>Company name:
+      <input type="text" name="company" [(ngModel)]="job.company">
+    </p>
+    <p>Job title:
+      <input type="text" name="title" [(ngModel)]="job.title">
+    </p>
+    <p>Company Category:
+      <input type="text" name="category" [(ngModel)]="job.category">
+    </p>
+    <p>Link to job posting:
+      <input type="text" name="linktopost" [(ngModel)]="job.linktopost">
+    </p>
+    <p>Status:
+      <input type="text" name="status" [(ngModel)]="job.status">
+    </p>
+    <p>Notes:
+      <input type="text" name="notes" [(ngModel)]="job.notes">
+    </p>
+    <input type="submit" value="Update job">
+  </form>
+</div>
+<button [routerLink]="['/home']">Cancel</button>
+<br> {{error}}

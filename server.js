@@ -14,7 +14,7 @@ let JobSchema = new mongoose.Schema({
     linktopost: { type: String },
     status: { type: String },
     notes: { type: String },
-    // likes: { type: Number, default: 0}
+    rating: { type: Number, default: 0}
 }, { timestamps: true });
 
 mongoose.model('Job', JobSchema);
@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/client/dist'));
 
 // Retrieve all jobs
 app.get('/jobs', function (req, res) {
-    Job.find({}, null, { sort: '-companyname' }, function (err, jobs) {
+    Job.find({}, null, { sort: '-rating' }, function (err, jobs) {
         console.log(jobs)
         if (err) {
             res.json({ message: "Error", err: err })
@@ -101,7 +101,22 @@ app.delete('/delete/:id', function (req, res) {
 app.put('/likejob/:id', function (req, res) {
     Job.findOne({ _id: req.body.job._id }, function (err, job) {
         console.log(job);
-        job.likes++;
+        job.rating++;
+        job.save(function (err) {
+            if (err) {
+                res.json({ message: "Error", err: err });
+            } else {
+                res.json({ message: "Success", id: job._id })
+            }
+        })
+    })
+})
+
+// Vote down job
+app.put('/unlikejob/:id', function (req, res) {
+    Job.findOne({ _id: req.body.job._id }, function (err, job) {
+        console.log(job);
+        job.rating--;
         job.save(function (err) {
             if (err) {
                 res.json({ message: "Error", err: err });

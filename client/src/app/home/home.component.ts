@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  editJobs(job) {
+  editJob(job) {
     console.log(job);
     this._httpService.selected = job;
     this._router.navigate(['/edit/' + job._id]);

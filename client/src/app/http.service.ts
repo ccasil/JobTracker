@@ -49,5 +49,10 @@ export class HttpService {
     return this._http.put('/likejob/' + job._id, { job: job });
   }
 
+  unlikeJob(job) {
+    console.log('unlike job service');
+    return this._http.put('/unlikejob/' + job._id, { job: job });
+  }
+
 
 }

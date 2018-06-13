@@ -34,14 +34,13 @@ export class NewComponent implements OnInit {
         this._router.navigate(['/home']);
       } else {
         console.log(data);
-        if ((data as any).err.errors.name !== undefined) {
+        if ((data as any).err.errors.company !== undefined) {
           this.error = 'Company name must be at least 3 characters';
-        } else if ((data as any).err.errors.type !== undefined) {
+        } else if ((data as any).err.errors.title !== undefined) {
           this.error = 'Title must be at least 3 characters';
         }
       }
     });
     console.log(this.company);
   }
-
 }

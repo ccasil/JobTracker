@@ -10,13 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { NewComponent } from './new/new.component';
+import { EditComponent } from './edit/edit.component';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NewComponent
+    NewComponent,
+    EditComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
