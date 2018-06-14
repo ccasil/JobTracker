@@ -1,12 +1,10 @@
-<button [routerLink]="['/home']">Home</button>
 <h4>Details about the {{ job.title }} position at {{ job.company }}</h4>
 <p>Job Category: {{ job.category }}</p>
-<p>Link to Job Post: {{ job.linktopost }}</p>
+<p>Link to Job Post: <a href="https://{{ job.linktopost }}" target="_blank">{{ job.linktopost }}</a></p>
 <p>Status: {{ job.status }}</p>
-<p>Notes:</p> 
-<p>{{ job.notes }}</p>
+<p>Notes: {{ job.notes }}</p>
 <p>Rating: {{ job.rating }}</p>
 
-<button id="like" (click)="like(job)"> Rank up this position </button>
-<button id="unlike" (click)="unlike(job)"> Rank down this position </button>
-<button (click)="delete(job)"> Delete this job! </button>
+<button class="btn btn-success" id="like" (click)="like(job)"> Rank up this position </button>
+<button class="btn btn-danger" id="unlike" (click)="unlike(job)"> Rank down this position </button>
+<button class="btn btn-dark" (click)="delete(job)"> Delete this job </button>

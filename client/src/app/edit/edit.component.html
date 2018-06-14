@@ -1,26 +1,38 @@
 <h4> Edit a position you have just applied to: </h4>
 <div *ngIf="job">
   <form (submit)="submitButton()">
-    <p>Company name:
-      <input type="text" name="company" [(ngModel)]="job.company">
-    </p>
-    <p>Job title:
-      <input type="text" name="title" [(ngModel)]="job.title">
-    </p>
-    <p>Company Category:
-      <input type="text" name="category" [(ngModel)]="job.category">
-    </p>
-    <p>Link to job posting:
-      <input type="text" name="linktopost" [(ngModel)]="job.linktopost">
-    </p>
-    <p>Status:
-      <input type="text" name="status" [(ngModel)]="job.status">
-    </p>
-    <p>Notes:
-      <input type="text" name="notes" [(ngModel)]="job.notes">
-    </p>
-    <input type="submit" value="Update job">
+    <div class="form-group">
+      <label>Company name</label>
+      <input type="text" class="form-control" name="company" [(ngModel)]="job.company">
+      <small class="form-text text-muted"></small>
+    </div>
+    <div class="form-group">
+      <label>Job title</label>
+      <input type="text" class="form-control" name="title" [(ngModel)]="job.title">
+      <small class="form-text text-muted"></small>
+    </div>
+    <div class="form-group">
+      <label>Company Category</label>
+      <input type="text" class="form-control" name="category" [(ngModel)]="job.category">
+      <small class="form-text text-muted"></small>
+    </div>
+    <div class="form-group">
+      <label>Link to job posting</label>
+      <input type="text" class="form-control" name="linktopost" [(ngModel)]="job.linktopost">
+      <small class="form-text text-muted"></small>
+    </div>
+    <div class="form-group">
+      <label>Status</label>
+      <input type="text" class="form-control" name="status" [(ngModel)]="job.status">
+      <small class="form-text text-muted"></small>
+    </div>
+    <div class="form-group">
+      <label>Notes</label>
+      <input type="text" class="form-control" name="notes" [(ngModel)]="job.notes">
+      <small class="form-text text-muted"></small>
+    </div>
+    <button class="btn btn-light" type="submit">Update Job</button>
+    <button class="btn btn-dark" [routerLink]="['/home']">Cancel</button>
   </form>
 </div>
-<button [routerLink]="['/home']">Cancel</button>
 <br> {{error}}

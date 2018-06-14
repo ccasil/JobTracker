@@ -62,14 +62,14 @@ exports.AppRoutingModule = AppRoutingModule;
 /***/ "./src/app/app.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "#content {\n    margin-top: 75px;\n}"
+module.exports = "#content {\n    margin-top: 75px;\n}\n\nbutton {\n    display: inline-block;\n    margin: 5px;\n}"
 
 /***/ }),
 
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--Navbar-->\n<nav class=\"navbar navbar-expand-lg navbar-light fixed-top bg-light\">\n    <a class=\"navbar-brand\" href=\"#\">Job Tracker</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExample\" aria-controls=\"navbarsExample\"\n        aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarsExample\">\n        <ul class=\"navbar-nav mr-auto\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" [routerLink]=\"['/new']\">Add Job</a>\n            </li>\n        </ul>\n    </div>\n</nav>\n\n<div id=\"content\">\n    <router-outlet></router-outlet>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <!--Navbar-->\n    <nav class=\"navbar navbar-expand navbar-light fixed-top bg-light\">\n        <a class=\"navbar-brand\" href=\"#\">Job Tracker</a>\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarsExample\" aria-controls=\"navbarsExample\"\n            aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n\n        <div class=\"collapse navbar-collapse\" id=\"navbarsExample\">\n            <ul class=\"navbar-nav mr-auto\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['/new']\">Add Job</a>\n                </li>\n            </ul>\n        </div>\n    </nav>\n    <div class=\"container\">\n        <div id=\"content\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -173,7 +173,7 @@ module.exports = ""
 /***/ "./src/app/details/details.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<button [routerLink]=\"['/home']\">Home</button>\n<h4>Details about the {{ job.title }} position at {{ job.company }}</h4>\n<p>Job Category: {{ job.category }}</p>\n<p>Link to Job Post: {{ job.linktopost }}</p>\n<p>Status: {{ job.status }}</p>\n<p>Notes:</p> \n<p>{{ job.notes }}</p>\n<p>Rating: {{ job.rating }}</p>\n\n<button id=\"like\" (click)=\"like(job)\"> Rank up this position </button>\n<button id=\"unlike\" (click)=\"unlike(job)\"> Rank down this position </button>\n<button (click)=\"delete(job)\"> Delete this job! </button>"
+module.exports = "<h4>Details about the {{ job.title }} position at {{ job.company }}</h4>\n<p>Job Category: {{ job.category }}</p>\n<p>Link to Job Post: <a href=\"https://{{ job.linktopost }}\" target=\"_blank\">{{ job.linktopost }}</a></p>\n<p>Status: {{ job.status }}</p>\n<p>Notes: {{ job.notes }}</p>\n<p>Rating: {{ job.rating }}</p>\n\n<button class=\"btn btn-success\" id=\"like\" (click)=\"like(job)\"> Rank up this position </button>\n<button class=\"btn btn-danger\" id=\"unlike\" (click)=\"unlike(job)\"> Rank down this position </button>\n<button class=\"btn btn-dark\" (click)=\"delete(job)\"> Delete this job </button>"
 
 /***/ }),
 
@@ -273,7 +273,7 @@ module.exports = ""
 /***/ "./src/app/edit/edit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h4> Edit a position you have just applied to: </h4>\n<div *ngIf=\"job\">\n  <form (submit)=\"submitButton()\">\n    <p>Company name:\n      <input type=\"text\" name=\"company\" [(ngModel)]=\"job.company\">\n    </p>\n    <p>Job title:\n      <input type=\"text\" name=\"title\" [(ngModel)]=\"job.title\">\n    </p>\n    <p>Company Category:\n      <input type=\"text\" name=\"category\" [(ngModel)]=\"job.category\">\n    </p>\n    <p>Link to job posting:\n      <input type=\"text\" name=\"linktopost\" [(ngModel)]=\"job.linktopost\">\n    </p>\n    <p>Status:\n      <input type=\"text\" name=\"status\" [(ngModel)]=\"job.status\">\n    </p>\n    <p>Notes:\n      <input type=\"text\" name=\"notes\" [(ngModel)]=\"job.notes\">\n    </p>\n    <input type=\"submit\" value=\"Update job\">\n  </form>\n</div>\n<button [routerLink]=\"['/home']\">Cancel</button>\n<br> {{error}}"
+module.exports = "<h4> Edit a position you have just applied to: </h4>\n<div *ngIf=\"job\">\n  <form (submit)=\"submitButton()\">\n    <div class=\"form-group\">\n      <label>Company name</label>\n      <input type=\"text\" class=\"form-control\" name=\"company\" [(ngModel)]=\"job.company\">\n      <small class=\"form-text text-muted\"></small>\n    </div>\n    <div class=\"form-group\">\n      <label>Job title</label>\n      <input type=\"text\" class=\"form-control\" name=\"title\" [(ngModel)]=\"job.title\">\n      <small class=\"form-text text-muted\"></small>\n    </div>\n    <div class=\"form-group\">\n      <label>Company Category</label>\n      <input type=\"text\" class=\"form-control\" name=\"category\" [(ngModel)]=\"job.category\">\n      <small class=\"form-text text-muted\"></small>\n    </div>\n    <div class=\"form-group\">\n      <label>Link to job posting</label>\n      <input type=\"text\" class=\"form-control\" name=\"linktopost\" [(ngModel)]=\"job.linktopost\">\n      <small class=\"form-text text-muted\"></small>\n    </div>\n    <div class=\"form-group\">\n      <label>Status</label>\n      <input type=\"text\" class=\"form-control\" name=\"status\" [(ngModel)]=\"job.status\">\n      <small class=\"form-text text-muted\"></small>\n    </div>\n    <div class=\"form-group\">\n      <label>Notes</label>\n      <input type=\"text\" class=\"form-control\" name=\"notes\" [(ngModel)]=\"job.notes\">\n      <small class=\"form-text text-muted\"></small>\n    </div>\n    <button class=\"btn btn-light\" type=\"submit\">Update Job</button>\n    <button class=\"btn btn-dark\" [routerLink]=\"['/home']\">Cancel</button>\n  </form>\n</div>\n<br> {{error}}"
 
 /***/ }),
 
@@ -351,7 +351,7 @@ module.exports = ""
 /***/ "./src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h4>You have applied to the following positions!</h4>\n\n<table>\n  <tr>\n    <th>Rank</th>\n    <th>Company</th>\n    <th>Title</th>\n    <th>Category</th>\n    <th>Job Posting</th>\n    <th>Status</th>\n    <th>Actions</th>\n  </tr>\n  <tr *ngFor=\"let job of jobs\">\n    <td> {{ job.rating }} </td>\n    <td> {{ job.company }} </td>\n    <td> {{ job.title }} </td>\n    <td> {{ job.category }} </td>\n    <td> {{ job.linktopost }} </td>\n    <td> {{ job.status }} </td>\n    <td>\n      <button (click)=\"viewJob(job)\"> Details </button>\n      <button (click)=\"editJob(job)\"> Edit </button>\n    </td>\n  </tr>\n</table>"
+module.exports = "<h4>You have applied to the following positions!</h4>\n\n<table class=\"table\">\n  <tr>\n    <th scope=\"col\">Rank</th>\n    <th scope=\"col\">Company</th>\n    <th scope=\"col\">Title</th>\n    <th scope=\"col\">Category</th>\n    <th scope=\"col\">Job Posting</th>\n    <th scope=\"col\">Status</th>\n    <th scope=\"col\"></th>\n  </tr>\n  <tr *ngFor=\"let job of jobs\">\n    <td> {{ job.rating }} </td>\n    <td> {{ job.company }} </td>\n    <td> {{ job.title }} </td>\n    <td> {{ job.category }} </td>\n    <td> <a href=\"https://{{ job.linktopost }}\" target=\"_blank\">{{ job.linktopost }}</a></td>\n    <td> {{ job.status }} </td>\n    <td>\n      <button class=\"btn btn-link\" (click)=\"viewJob(job)\"> Details </button>\n      <button class=\"btn btn-link\" (click)=\"editJob(job)\"> Edit </button>\n    </td>\n  </tr>\n</table>"
 
 /***/ }),
 
@@ -498,7 +498,7 @@ module.exports = ""
 /***/ "./src/app/new/new.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h4> Add a position you have just applied to: </h4>\n\n<form (submit)=\"submitButton()\">\n  <p>Company name:\n    <input type=\"text\" name=\"company\" [(ngModel)]=\"company\">\n  </p>\n  <p>Job title:\n    <input type=\"text\" name=\"title\" [(ngModel)]=\"title\">\n  </p>\n  <p>Company Category:\n    <input type=\"text\" name=\"category\" [(ngModel)]=\"category\">\n  </p>\n  <p>Link to job posting:\n    <input type=\"text\" name=\"linktopost\" [(ngModel)]=\"linktopost\">\n  </p>\n  <p>Status:\n    <input type=\"text\" name=\"status\" [(ngModel)]=\"status\">\n  </p>\n  <p>Notes:\n    <input type=\"text\" name=\"notes\" [(ngModel)]=\"notes\">\n  </p>\n  <input type=\"submit\" value=\"Add job\">\n</form>\n<button [routerLink]=\"['/home']\">Cancel</button>\n<br> {{error}}"
+module.exports = "<h4> Add a position you have just applied to: </h4>\n\n<form (submit)=\"submitButton()\">\n  <div class=\"form-group\">\n    <label>Company name</label>\n    <input type=\"text\" class=\"form-control\" name=\"company\" [(ngModel)]=\"company\">\n    <small class=\"form-text text-muted\"></small>\n  </div>\n  <div class=\"form-group\">\n    <label>Job title</label>\n    <input type=\"text\" class=\"form-control\" name=\"title\" [(ngModel)]=\"title\">\n    <small class=\"form-text text-muted\"></small>\n  </div>\n  <div class=\"form-group\">\n    <label>Company Category</label>\n    <input type=\"text\" class=\"form-control\" name=\"category\" [(ngModel)]=\"category\">\n    <small class=\"form-text text-muted\"></small>\n  </div>\n  <div class=\"form-group\">\n    <label>Link to Job Posting</label>\n    <input type=\"text\" class=\"form-control\" name=\"linktopost\" [(ngModel)]=\"linktopost\">\n    <small class=\"form-text text-muted\"></small>\n  </div>\n  <div class=\"form-group\">\n    <label>Status</label>\n    <input type=\"text\" class=\"form-control\" name=\"status\" [(ngModel)]=\"status\">\n    <small class=\"form-text text-muted\"></small>\n  </div>\n  <div class=\"form-group\">\n    <label>Notes</label>\n    <input type=\"text\" class=\"form-control\" name=\"notes\" [(ngModel)]=\"notes\">\n    <small class=\"form-text text-muted\"></small>\n  </div>\n  <button class=\"btn btn-light\" type=\"submit\">Add Job</button>\n  <button class=\"btn btn-dark\" [routerLink]=\"['/home']\">Cancel</button>\n</form>\n\n<br> {{error}}"
 
 /***/ }),
 
