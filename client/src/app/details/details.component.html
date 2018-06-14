@@ -1,9 +1,29 @@
 <h4>Details about the {{ job.title }} position at {{ job.company }}</h4>
-<p>Job Category: {{ job.category }}</p>
-<p>Link to Job Post: <a href="https://www.{{ job.linktopost }}" target="_blank">{{ job.linktopost }}</a></p>
-<p>Status: {{ job.status }}</p>
-<p>Notes: {{ job.notes }}</p>
-<p>Rating: {{ job.rating }}</p>
+
+<table class="table">
+    <tr>
+        <td scope="col">Category</td>
+        <td> {{ job.category }} </td>
+    </tr>
+    <tr>
+        <td scope="col">Job Posting</td>
+        <td>
+            <a href="https://www.{{ job.linktopost }}" target="_blank">{{ job.linktopost }}</a>
+        </td>
+    </tr>
+    <tr>
+        <td scope="col">Status</td>
+        <td> {{ job.status }} </td>
+    </tr>
+    <tr>
+        <td scope="col">Notes</td>
+        <td> {{ job.notes }} </td>
+    </tr>
+    <tr>
+        <td scope="col">Rank</td>
+        <td> {{ job.rating }} </td>
+    </tr>
+</table>
 
 <button class="btn btn-success" id="like" (click)="like(job)"> Rank up this position </button>
 <button class="btn btn-danger" id="unlike" (click)="unlike(job)"> Rank down this position </button>

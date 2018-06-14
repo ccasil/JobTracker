@@ -23,7 +23,13 @@
   </div>
   <div class="form-group">
     <label>Status</label>
-    <input type="text" class="form-control" name="status" [(ngModel)]="status">
+    <select type="text" class="form-control" name="status" [(ngModel)]="status">
+      <option>Pending</option>
+      <option>Phone Interview</option>
+      <option>On-Site Interview</option>
+      <option>Webcam Interview</option>
+      <option>Technical Assessment</option>
+    </select>
     <small class="form-text text-muted"></small>
   </div>
   <div class="form-group">

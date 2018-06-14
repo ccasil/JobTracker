@@ -1,23 +1,21 @@
-<div class="container-fluid">
-    <!--Navbar-->
-    <nav class="navbar navbar-expand navbar-light fixed-top bg-light">
-        <a class="navbar-brand" href="#">Job Tracker</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample" aria-controls="navbarsExample"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<!--Navbar-->
+<nav class="navbar navbar-expand navbar-light fixed-top bg-light">
+    <a class="navbar-brand" href="#">Job Tracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample" aria-controls="navbarsExample"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExample">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/new']">Add Job</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container">
-        <div id="content">
-            <router-outlet></router-outlet>
-        </div>
+    <div class="collapse navbar-collapse" id="navbarsExample">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/new']">Add Job</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div id="content">
+        <router-outlet></router-outlet>
     </div>
 </div>
