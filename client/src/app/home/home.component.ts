@@ -10,6 +10,7 @@ import { HttpService } from '../http.service';
 export class HomeComponent implements OnInit {
 
   jobs = [];
+  profiles = [];
 
   constructor(
     private _route: ActivatedRoute,
@@ -18,7 +19,22 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getProfiles();
     this.getJobs();
+  }
+
+  getProfiles() {
+    const observable = this._httpService.getProfiles();
+    observable.subscribe(data => {
+      console.log(data);
+      this.profiles = (data as any).data;
+    });
+  }
+
+  editProfile(profile) {
+    console.log(profile);
+    this._httpService.selected = profile;
+    this._router.navigate(['/editprofile/' + profile._id]);
   }
 
   getJobs() {

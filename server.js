@@ -20,10 +20,81 @@ let JobSchema = new mongoose.Schema({
 mongoose.model('Job', JobSchema);
 let Job = mongoose.model('Job')
 
+let ProfileSchema = new mongoose.Schema({
+    firstname: { type: String, required: true, minlength: [3, "first name must be at least 3 characters"] },
+    lastname: { type: String, required: true, minlength: [3, "last name must be at least 3 characters"] },
+    resume: { type: String, required: true },
+    linkedin: { type: String },
+    github: { type: String },
+    personal: { type: String }
+});
+
+mongoose.model('Profile', ProfileSchema);
+let Profile = mongoose.model('Profile')
+
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client/dist'));
+
+// Retrieve profiles
+app.get('/profile', function (req, res) {
+    Profile.find({}, null, { sort: '-firstname' }, function (err, profile) {
+        console.log(profile)
+        if (err) {
+            res.json({ message: "Error", err: err })
+        } else {
+            res.json({ message: "Success", data: profile })
+        }
+    })
+})
+
+// Create a new profile
+app.post('/newprofile', function (req, res) {
+    let newProfile = new Profile(req.body);
+    console.log("creating new profile");
+    newProfile.save(function (err) {
+        if (err) {
+            console.log("error creating")
+            res.json({ message: "Error creating a profile", err: err });
+        } else {
+            res.json({ message: "Success", id: newProfile._id })
+        }
+    })
+})
+
+// Update profile
+app.put('/editprofile/:id', function (req, res) {
+    console.log("editing profile")
+    Profile.findOne({ _id: req.body.id }, function (err, profile) {
+        console.log(profile)
+        profile.firstname = req.body.firstname;
+        profile.lastname = req.body.lastname;
+        profile.resume = req.body.resume;
+        profile.linkedin = req.body.linkedin;
+        profile.github = req.body.github;
+        profile.personal = req.body.personal;
+        profile.save(function (err) {
+            if (err) {
+                res.json({ message: "Error", err: err });
+            } else {
+                res.json({ message: "Success", id: profile._id })
+            }
+        })
+    })
+})
+
+// Delete profile
+app.delete('/deleteprofile/:id', function (req, res) {
+    console.log("deleting profile id: ", req.params.id)
+    Profile.remove({ _id: req.params.id }, function (err) {
+        if (err) {
+            res.json({ message: "Error", err: err })
+        } else {
+            res.json({ message: "Success" })
+        }
+    })
+})
 
 // Retrieve all jobs
 app.get('/jobs', function (req, res) {
@@ -44,7 +115,7 @@ app.post('/new', function (req, res) {
     newJob.save(function (err) {
         if (err) {
             console.log("error creating")
-            res.json({ message: "Error creating a jon", err: err });
+            res.json({ message: "Error creating a job", err: err });
         } else {
             res.json({ message: "Success", id: newJob._id })
         }

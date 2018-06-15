@@ -1,3 +1,25 @@
+<h4>Contact Information</h4>
+<table class="table">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Resume</th>
+    <th scope="col">LinkedIn</th>
+    <th scope="col">GitHub</th>
+    <th scope="col">Personal</th>
+    <th scope="col"></th>
+  </tr>
+  <tr *ngFor="let profile of profiles">
+    <td> {{ profile.firstname }} {{ profile.lastname }}</td>
+    <td> {{ profile.resume }} </td>
+    <td> <a href="https://www.{{ profile.linkedin }}" target="_blank">{{ profile.linkedin }}</a> </td>
+    <td> <a href="https://www.{{ profile.github }}" target="_blank">{{ profile.github }}</a> </td>
+    <td><a href="https://www.{{ profile.personal }}" target="_blank">{{ profile.personal }}</a></td>
+    <td>
+      <button class="btn btn-link" (click)="editProfile(profile)"> Edit </button>
+    </td>
+  </tr>
+</table>
+
 <h4>You have applied to the following positions!</h4>
 
 <table class="table">

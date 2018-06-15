@@ -8,6 +8,42 @@ export class HttpService {
 
   constructor(private _http: HttpClient) { }
 
+  getProfiles() {
+    return this._http.get('/profile');
+  }
+
+  findProfile(id) {
+    return this._http.get('/findprofile/' + id);
+  }
+
+  newProfile(firstname, lastname, resume, linkedin, github, personal) {
+    return this._http.post('/newprofile', {
+      firstname: firstname,
+      lastname: lastname,
+      resume: resume,
+      linkedin: linkedin,
+      github: github,
+      personal: personal
+    });
+  }
+
+  editProfile(profile) {
+    return this._http.put('/editprofile/' + profile._id, {
+      id: profile._id,
+      firstname: profile.firstname,
+      lastname: profile.lastname,
+      resume: profile.resume,
+      linkedin: profile.linkedin,
+      github: profile.github,
+      personal: profile.personal
+    });
+  }
+
+  deleteProfile(profile) {
+    console.log('deleting ', profile);
+    return this._http.delete('/deleteprofile/' + profile._id);
+  }
+
   getJobs() {
     return this._http.get('/jobs');
   }

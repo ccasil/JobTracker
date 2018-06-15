@@ -12,6 +12,8 @@ import { HomeComponent } from './home/home.component';
 import { NewComponent } from './new/new.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { DetailsComponent } from './details/details.component';
     HomeComponent,
     NewComponent,
     EditComponent,
-    DetailsComponent
+    DetailsComponent,
+    ProfileComponent,
+    EditprofileComponent
   ],
   imports: [
     BrowserModule,
